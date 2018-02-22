@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<tables>
+ <table alias="tableOne">
+  <field id="1" alias="fieldTypeDate" type="date">Field Type Date</field>
+  <field id="2" alias="otherField1" type="list"> other field 1</field>
+ </table>
+ <table alias="tableTwo">
+  <field id="3" alias="otherField2" type="date">other field 2</field>
+  <field id="4" alias="otherField3" type="list">other field 3</field>
+ </table>
+</tables>

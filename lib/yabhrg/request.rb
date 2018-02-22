@@ -37,7 +37,6 @@ module Yabhrg
     def request(method, path, options, _raw = false)
       response = connection.send(method) do |request|
         request.headers["Accept"] = "application/json"
-        path = CGI.escape(path)
         case method
         when :get, :delete
           request.url(path, options)
@@ -46,6 +45,7 @@ module Yabhrg
           request.body = options unless options.empty?
         end
       end
+
       raise NonSuccessResponse, response if response.status >= 400
       response.body
     end

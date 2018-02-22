@@ -15,11 +15,9 @@ module Yabhrg
     end
 
     def field_list(reload = false)
-      if @field_list.nil? || reload
+      memoize(reload) do
         @field_list = api.metadata.fields(reload).map { |x| x["alias"] }.compact
       end
-
-      @field_list
     end
   end
 end

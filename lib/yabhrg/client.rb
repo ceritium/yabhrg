@@ -4,20 +4,22 @@ require "faraday"
 require "faraday_middleware"
 
 require "yabhrg/request"
+require "yabhrg/memoize"
 
 module Yabhrg
   class Client
     include Request
+    include Memoize
 
     USER_AGENT = "Yabhrg #{VERSION}".freeze
     DUMMY_PASS = "x".freeze # Specified by the API documentation
 
     attr_reader :api_key, :subdomain
 
-    def initialize(api_key:, subdomain:, api:)
+    def initialize(api_key:, subdomain:, api: nil)
       @api_key = api_key
       @subdomain = subdomain
-      @api = api
+      @api = api || API.new(api_key: api_key, subdomain: subdomain)
     end
 
     private

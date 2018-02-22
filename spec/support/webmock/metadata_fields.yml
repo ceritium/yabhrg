@@ -1,0 +1,11 @@
+---
+- id: '4340.4'
+  name: "ID as string with decimals"
+  type: text
+- id: 1502
+  name: "ID as integer"
+  type: text
+- id: 4021
+  name: 'With alias'
+  type: date
+  alias: payRateEffectiveDate
