@@ -1,5 +1,12 @@
 require "yabhrg/version"
 
+require "yabhrg/api"
+require "yabhrg/client"
+
 module Yabhrg
-  # Your code goes here...
+  class << self
+    def api(options = {})
+      API.new(options)
+    end
+  end
 end
