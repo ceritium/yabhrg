@@ -1,5 +1,6 @@
-require "yabhrg/version"
+require "nokogiri"
 
+require "yabhrg/version"
 require "yabhrg/api"
 require "yabhrg/client"
 
