@@ -28,5 +28,23 @@ module Yabhrg
       xml = put("meta/lists/#{list_id}", body)
       Responses::MetadataListUpdate.parse(xml)
     end
+
+    def time_off_types(reload = false)
+      memoize(reload) do
+        JSON.parse(get("meta/time_off/types"))
+      end
+    end
+
+    def time_off_policies(reload = false)
+      memoize(reload) do
+        JSON.parse(get("meta/time_off/policies"))
+      end
+    end
+
+    def users(reload = false)
+      memoize(reload) do
+        JSON.parse(get("meta/users"))
+      end
+    end
   end
 end
