@@ -1,0 +1,25 @@
+{
+   "timeOffTypes":[
+      {
+         "id":"1",
+         "name":"Vacation",
+         "units":"hours",
+         "color":"eef448",
+         "icon":"palm-trees"
+      }
+   ],
+   "defaultHours":[
+      {
+         "name":"Saturday",
+         "amount":"0"
+      },
+      {
+         "name":"Sunday",
+         "amount":"0"
+      },
+      {
+         "name":"default",
+         "amount":"8"
+      }
+   ]
+}

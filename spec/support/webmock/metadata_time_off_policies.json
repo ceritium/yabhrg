@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "timeOffTypeId": 4,
+        "name": "Vacation",
+        "effectiveDate": "2012-02-01",
+        "type": "accruing"
+    },
+    {
+        "id": 2,
+        "timeOffTypeId": 10,
+        "name": "Sick Time",
+        "effectiveDate": "2012-02-01",
+        "type": "manual"
+    },
+    {
+        "id": 3,
+        "timeOffTypeId": 10,
+        "name": "Executive Sick Time",
+        "effectiveDate": "2012-02-01",
+        "type": "discretionary"
+    }
+]
