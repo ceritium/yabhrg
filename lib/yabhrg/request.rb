@@ -11,6 +11,8 @@ module Yabhrg
       end
     end
 
+    private
+
     # Perform an HTTP GET request
     def get(path, options = {}, raw = false)
       request(:get, path, options, raw)
@@ -30,8 +32,6 @@ module Yabhrg
     def delete(path, options = {}, raw = false)
       request(:delete, path, options, raw)
     end
-
-    private
 
     # Perform an HTTP request
     def request(method, path, options, _raw = false)

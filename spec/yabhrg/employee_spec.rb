@@ -78,4 +78,23 @@ RSpec.describe Yabhrg::Employee do
       expect(stub).to have_been_requested.once
     end
   end
+
+  describe "#update" do
+    it "put to api" do
+      expected_body = <<-XML
+<employee>
+  <field id="foo">bar</field>
+  <field id="bar">foo</field>
+</employee>
+      XML
+
+      stub = stub_request(:put, "#{endpoint}/employees/42").
+             with(body: expected_body.strip).
+             to_return(status: 200, body: "", headers: {})
+
+      instance.update(42, foo: :bar, bar: :foo)
+
+      expect(stub).to have_been_requested.once
+    end
+  end
 end
