@@ -1,13 +1,15 @@
 RSpec.describe Yabhrg::Metadata do
   subject(:instance) { described_class.new(api_key: "foo", subdomain: "bar") }
 
+  let(:endpoint) { instance.endpoint }
+
   describe "#fields" do
     let(:fields_response) do
       YAML.load_file("spec/support/webmock/metadata_fields.yml")
     end
 
     let(:stub_request_fields) do
-      url = "https://api.bamboohr.com/api/gateway.php/bar/v1/meta/fields"
+      url = "#{endpoint}/meta/fields"
 
       stub_request(:get, url).
         to_return(status: 200, body: fields_response.to_json, headers: {})
@@ -41,7 +43,7 @@ RSpec.describe Yabhrg::Metadata do
     end
 
     let(:stub_request_tables) do
-      url = "https://api.bamboohr.com/api/gateway.php/bar/v1/meta/tables"
+      url = "#{endpoint}/meta/tables"
 
       stub_request(:get, url).
         to_return(status: 200, body: tables_response, headers: {})
@@ -90,7 +92,7 @@ RSpec.describe Yabhrg::Metadata do
     end
 
     let(:stub_request_lists) do
-      url = "https://api.bamboohr.com/api/gateway.php/bar/v1/meta/lists"
+      url = "#{endpoint}/meta/lists"
 
       stub_request(:get, url).
         to_return(status: 200, body: lists_response, headers: {})
@@ -120,7 +122,7 @@ RSpec.describe Yabhrg::Metadata do
 
   describe "#list_update" do
     it "do proper request" do
-      url = "https://api.bamboohr.com/api/gateway.php/bar/v1/meta/lists/42"
+      url = "#{endpoint}/meta/lists/42"
       stub = stub_request(:put, url).
              with(body: "<options>\n  <option>foo</option>\n</options>").
              to_return(status: 200, body: "", headers: {})
@@ -139,7 +141,7 @@ RSpec.describe Yabhrg::Metadata do
 </list>
       XML
 
-      url = "https://api.bamboohr.com/api/gateway.php/bar/v1/meta/lists/42"
+      url = "#{endpoint}/meta/lists/42"
       stub_request(:put, url).
         with(body: "<options>\n  <option>foo</option>\n</options>").
         to_return(status: 200, body: response_body, headers: {})
@@ -170,7 +172,7 @@ RSpec.describe Yabhrg::Metadata do
     end
 
     let(:stub_request_time_off_types) do
-      url = "https://api.bamboohr.com/api/gateway.php/bar/v1/meta/time_off/types"
+      url = "#{endpoint}/meta/time_off/types"
 
       stub_request(:get, url).
         to_return(status: 200, body: time_off_types_response, headers: {})
@@ -205,7 +207,7 @@ RSpec.describe Yabhrg::Metadata do
     end
 
     let(:stub_request_time_off_policies) do
-      url = "https://api.bamboohr.com/api/gateway.php/bar/v1/meta/time_off/policies"
+      url = "#{endpoint}/meta/time_off/policies"
 
       stub_request(:get, url).
         to_return(status: 200, body: time_off_policies_response, headers: {})
@@ -240,7 +242,7 @@ RSpec.describe Yabhrg::Metadata do
     end
 
     let!(:stub_request_api) do
-      url = "https://api.bamboohr.com/api/gateway.php/bar/v1/meta/users"
+      url = "#{endpoint}/meta/users"
 
       stub_request(:get, url).
         to_return(status: 200, body: response_body, headers: {})
