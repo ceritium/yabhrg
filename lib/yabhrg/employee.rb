@@ -1,3 +1,5 @@
+require "yabhrg/generators/employee_add"
+
 module Yabhrg
   class Employee < Client
     def all
@@ -12,6 +14,11 @@ module Yabhrg
               end.join(",")
 
       JSON.parse(get("employees/#{id}?fields=#{query}"))
+    end
+
+    def add(attrs = {})
+      body = Generators::EmployeeAdd.generate(attrs)
+      post("employees", body)
     end
 
     def field_list(reload = false)

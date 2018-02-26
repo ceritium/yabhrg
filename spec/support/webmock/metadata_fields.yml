@@ -8,4 +8,8 @@
 - id: 4021
   name: 'With alias'
   type: date
-  alias: payRateEffectiveDate
+  alias: withAlias
+- id: 4023
+  name: 'another With alias'
+  type: date
+  alias: anotherWithAlias

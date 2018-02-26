@@ -22,6 +22,10 @@ module Yabhrg
       @api = api || API.new(api_key: api_key, subdomain: subdomain)
     end
 
+    def endpoint
+      "https://api.bamboohr.com/api/gateway.php/#{subdomain}/v1"
+    end
+
     private
 
     attr_reader :api
@@ -31,10 +35,6 @@ module Yabhrg
         api_key: api_key,
         subdomain: subdomain
       }
-    end
-
-    def endpoint
-      "https://api.bamboohr.com/api/gateway.php/#{subdomain}/v1"
     end
 
     def conn_options
