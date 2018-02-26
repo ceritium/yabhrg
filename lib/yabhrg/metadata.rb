@@ -25,7 +25,7 @@ module Yabhrg
 
     def list_update(list_id, items = [])
       body = Generators::MetadataListOptions.generate(items)
-      xml = put("meta/lists/#{list_id}", body)
+      xml = put("meta/lists/#{list_id}", body: body)
       Responses::MetadataListUpdate.parse(xml)
     end
 

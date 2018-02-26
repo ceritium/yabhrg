@@ -1,4 +1,3 @@
-require "pry"
 module Yabhrg
   # Defines HTTP request methods
   module Request
@@ -42,7 +41,8 @@ module Yabhrg
           request.url(path, options)
         when :post, :put
           request.path = path
-          request.body = options unless options.empty?
+          request.params = options[:params] if options[:params]
+          request.body = options[:body] if options[:body]
         end
       end
 
