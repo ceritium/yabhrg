@@ -21,6 +21,11 @@ module Yabhrg
       post("employees", body)
     end
 
+    def update(id, attrs = {})
+      body = Generators::EmployeeAdd.generate(attrs)
+      put("employees/#{id}", body)
+    end
+
     def field_list(reload = false)
       memoize(reload) do
         @field_list = api.metadata.fields(reload).map { |x| x["alias"] }.compact
