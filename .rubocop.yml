@@ -6,22 +6,7 @@ AllCops:
   DisplayCopNames: true
   TargetRubyVersion: 2.2
 
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
-
-Style/Documentation:
-  Enabled: false
-
-Metrics/MethodLength:
-  Enabled: false
-
-Layout/DotPosition:
-  EnforcedStyle: trailing
-
-RSpec/ExampleLength:
-  Enabled: false
-
-Layout/IndentHeredoc:
+Metrics/AbcSize:
   Enabled: false
 
 Metrics/BlockLength:
@@ -31,3 +16,24 @@ Metrics/BlockLength:
     - Rakefile
     - "**/*.rake"
     - spec/**/*.rb
+
+Metrics/MethodLength:
+  Enabled: false
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+Layout/IndentHeredoc:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/WordArray:
+  EnforcedStyle: brackets
+
+RSpec/ExampleLength:
+  Enabled: false

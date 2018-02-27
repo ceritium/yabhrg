@@ -45,7 +45,7 @@ RSpec.describe Yabhrg::Employee do
       stub = stub_request(:get, url).
              to_return(status: 200, body: {}.to_json, headers: {})
 
-      instance.find(42, fields: %w[foo bar])
+      instance.find(42, fields: ["foo", "bar"])
 
       expect(stub).to have_been_requested.once
     end
@@ -55,7 +55,7 @@ RSpec.describe Yabhrg::Employee do
       stub_request(:get, url).
         to_return(status: 200, body: { a: :json }.to_json, headers: {})
 
-      result = instance.find(42, fields: %w[foo bar])
+      result = instance.find(42, fields: ["foo", "bar"])
       expect(result).to eq("a" => "json")
     end
   end
@@ -95,6 +95,51 @@ RSpec.describe Yabhrg::Employee do
       instance.update(42, foo: :bar, bar: :foo)
 
       expect(stub).to have_been_requested.once
+    end
+  end
+
+  describe "#report" do
+    it "parse json" do
+      stub_request(:get, "#{endpoint}/reports/42?fd=yes&format=json").
+        to_return(status: 200, body: {}.to_json, headers: {})
+      result = instance.report(42)
+      expect(result).to be_a(Hash)
+    end
+
+    it "fd parameter" do
+      stub = stub_request(:get, "#{endpoint}/reports/42?fd=foo&format=json").
+             to_return(status: 200, body: {}.to_json, headers: {})
+
+      instance.report(42, fd: "foo")
+      expect(stub).to have_been_requested.once
+    end
+  end
+
+  describe "#raw_report" do
+    it "raw response" do
+      stub_request(:get, "#{endpoint}/reports/42?fd=yes&format=bar").
+        to_return(status: 200, body: "raw body", headers: {})
+
+      result = instance.raw_report(42, format: "bar")
+      expect(result).to eq("raw body")
+    end
+
+    it "fd and format parameters" do
+      stub = stub_request(:get, "#{endpoint}/reports/42?fd=foo&format=bar").
+             to_return(status: 200, body: "raw body", headers: {})
+
+      instance.raw_report(42, fd: "foo", format: "bar")
+      expect(stub).to have_been_requested.once
+    end
+  end
+
+  describe "#custom_raw_report" do
+    it "custom raw response" do
+      stub_request(:post, "#{endpoint}/reports/custom?format=bar").
+        to_return(status: 200, body: "raw body", headers: {})
+
+      result = instance.custom_raw_report(title: "foo", format: "bar")
+      expect(result).to eq("raw body")
     end
   end
 end
