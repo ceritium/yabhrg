@@ -26,6 +26,16 @@ module Yabhrg
       "https://api.bamboohr.com/api/gateway.php/#{subdomain}/v1"
     end
 
+    def connection
+      Faraday::Connection.new(conn_options) do |conn|
+        conn.request :multipart
+        conn.request :url_encoded
+
+        conn.basic_auth(api_key, DUMMY_PASS)
+        conn.adapter(Faraday.default_adapter)
+      end
+    end
+
     private
 
     attr_reader :api
@@ -42,15 +52,6 @@ module Yabhrg
         headers: { "User-Agent" => USER_AGENT },
         url: endpoint
       }
-    end
-
-    def connection
-      Faraday::Connection.new(conn_options) do |conn|
-        # conn.response :xml,  :content_type => /\bxml$/
-        # conn.response :json, :content_type => /\bjson$/
-        conn.basic_auth(api_key, DUMMY_PASS)
-        conn.adapter(Faraday.default_adapter)
-      end
     end
   end
 end

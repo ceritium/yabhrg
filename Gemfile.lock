@@ -4,6 +4,7 @@ PATH
     yabhrg (0.1.0)
       faraday (>= 0.7, < 0.10)
       faraday_middleware (>= 0.8, < 0.10)
+      mimemagic (~> 0.3)
       nokogiri
 
 GEM
@@ -53,6 +54,7 @@ GEM
       ruby_dep (~> 1.2)
     lumberjack (1.0.12)
     method_source (0.9.0)
+    mimemagic (0.3.2)
     mini_portile2 (2.3.0)
     multipart-post (2.0.0)
     nenv (0.3.0)
