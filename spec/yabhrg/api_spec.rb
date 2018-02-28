@@ -26,4 +26,17 @@ RSpec.describe Yabhrg::API do
       expect(m1).to be(m2)
     end
   end
+
+  describe "#table" do
+    it "instantiate a Table" do
+      expect(api.table).to be_a(Yabhrg::Table)
+    end
+
+    it "memoize the instance" do
+      t1 = api.table
+      t2 = api.table
+
+      expect(t1).to be(t2)
+    end
+  end
 end

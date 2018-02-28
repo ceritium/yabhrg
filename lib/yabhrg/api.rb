@@ -1,6 +1,7 @@
 require "yabhrg/client"
 require "yabhrg/employee"
 require "yabhrg/metadata"
+require "yabhrg/table"
 
 module Yabhrg
   class API
@@ -14,6 +15,10 @@ module Yabhrg
 
     def metadata
       @metadata ||= Metadata.new(config)
+    end
+
+    def table
+      @table ||= Table.new(config)
     end
 
     private
