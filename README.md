@@ -23,9 +23,9 @@ api = Yabhrg.api(api_key: "foo", subdomain: "bar")
 There are available three main modules: `Employee`, `Metadata` and `Table` that can be instantiated with:
 
 ```ruby
-Yabhrg::Employee.new(api_key: "foo", subdomain: "bar")`
-Yabhrg::Metada.new(api_key: "foo", subdomain: "bar")`
-Yabhrg::Table.new(api_key: "foo", subdomain: "bar")`
+Yabhrg::Employee.new(api_key: "foo", subdomain: "bar")
+Yabhrg::Metada.new(api_key: "foo", subdomain: "bar")
+Yabhrg::Table.new(api_key: "foo", subdomain: "bar")
 ```
 
 Or accessed through the api instance:
