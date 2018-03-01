@@ -113,7 +113,7 @@ RSpec.describe Yabhrg::Employee do
 </employee>
       XML
 
-      stub = stub_request(:put, "#{endpoint}/employees/42").
+      stub = stub_request(:post, "#{endpoint}/employees/42").
              with(body: expected_body.strip).
              to_return(status: 200, body: "", headers: {})
 

@@ -59,7 +59,7 @@ module Yabhrg
 
     def update(employee_id, attrs = {})
       body = Generators::EmployeeAdd.generate(attrs)
-      put("employees/#{employee_id}", body: body).success?
+      post("employees/#{employee_id}", body: body).success?
     end
 
     def report(report_id, fd: "yes")
