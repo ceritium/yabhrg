@@ -6,7 +6,7 @@ RSpec.describe Yabhrg::Table do
   describe "#rows" do
     let(:stub_api) do
       stub_request(:get, "#{endpoint}/employees/42/tables/foobar").
-        to_return(status: 200, body: "")
+        to_return(status: 200, body: [].to_json)
     end
 
     it "request api" do
@@ -14,6 +14,12 @@ RSpec.describe Yabhrg::Table do
 
       instance.rows(42, "foobar")
       expect(stub).to have_been_requested
+    end
+
+    it "parse json" do
+      stub_api
+      result = instance.rows(42, "foobar")
+      expect(result).to be_a(Array)
     end
   end
 

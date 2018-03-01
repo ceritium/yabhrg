@@ -1,6 +1,5 @@
 require "time"
 
-require "yabhrg/responses/employee_table"
 require "yabhrg/responses/table_changes"
 require "yabhrg/generators/row_fields"
 
@@ -8,8 +7,7 @@ module Yabhrg
   class Table < Client
     def rows(employee_id, table_name)
       path = base_path(employee_id, table_name)
-      response = get(path).body
-      Responses::EmployeeTable.parse(response)
+      JSON.parse(get(path).body)
     end
 
     def update_row(employee_id, table_name, row_id, attrs = {})
