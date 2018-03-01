@@ -2,29 +2,72 @@
 
 [![Build Status](https://travis-ci.org/ceritium/yabhrg.svg?branch=master)](https://travis-ci.org/ceritium/yabhrg)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/yabhrg`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Yabhrg (yet another BambooHR gem) is a Ruby wrapper for the BambooHR API.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+The gem is not released on rubygems.org yet, but you can build it from source or use the repo url in your gemfile.
 
 ```ruby
-gem 'yabhrg'
+gem 'yabhrg', git: "https://github.com/ceritium/yabhrg.git"
 ```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install yabhrg
 
 ## Usage
 
-TODO: Write usage instructions here
+Instantiate an api client:
+
+```ruby
+api = Yabhrg.api(api_key: "foo", subdomain: "bar")
+```
+
+There are available three main modules: `Yabhrg::Employee`, `Yabhrg::Metadata`, `Yabhrg::Table` that can be instantiated as before: `Yabhrg::Employee.new(api_key: "foo", subdomain: "bar")`.
+
+Theses modules can be also accesed through `api`:
+
+```ruby
+api.employee
+api.metadata
+api.table
+```
+
+The available methods are distributed along theses modules pretending to look like [BambooHR documentation](https://www.bamboohr.com/api/documentation/) describes the api.
+
+Example of some methods:
+
+```ruby
+api.employee.all
+api.employee.find(42, fields: :all)
+api.employee.changes_since(type: "inserted", since_at: Time.new(2016, 9, 23, 0o2, 40, 0))
+
+api.metadata.fields
+api.metadata.tables
+api.metadata.lists
+
+api.table.rows(42, "jobInfo")
+api.table.add_row(42, "jobInfo", {foo: :bar, bar: :foo})
+api.table.update_row(42, "jobInfo", 24, {foo: :bar, bar: :foo})
+```
+
+### Cached responses
+
+Some methods are automaticaly cached, the cache can be flushed passing a parameter to the method, check the code see which methods are cached and the required parameters to flush the cache.
+
+For example:
+
+```ruby
+api.metadata.fields # Cache the request
+api.metadata.fields(true) # Flush and cache the request
+```
+
+## TODO
+
+- The api is not 100% supported yet but I pretend cover it in the next weeks.
+- Proper RDoc documentation.
+
+## Similar projects
+
+- https://github.com/Skookum/bamboozled
+- https://github.com/crowdint/bamboohr
 
 ## Development
 
@@ -34,7 +77,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/yabhrg. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/ceritium/yabhrg. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
