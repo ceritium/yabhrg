@@ -46,4 +46,30 @@ RSpec.describe Yabhrg::Table do
       expect(stub).to have_been_requested
     end
   end
+
+  describe "#changes_since" do
+    let(:now) do
+      Time.new(2016, 9, 23, 0o2, 40, 0).utc
+    end
+
+    let(:stub_api) do
+      xml = File.read("spec/support/webmock/table_changes.xml")
+      stub_request(:get, "#{endpoint}/employees/changed/tables/foobar?since=#{now.iso8601}").
+        to_return(status: 200, body: xml)
+    end
+
+    it "request api passing a string" do
+      stub = stub_api
+
+      instance.changes_since("foobar", now.to_s)
+      expect(stub).to have_been_requested
+    end
+
+    it "request api passing a Time" do
+      stub = stub_api
+
+      instance.changes_since("foobar", now)
+      expect(stub).to have_been_requested
+    end
+  end
 end
