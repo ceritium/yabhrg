@@ -36,7 +36,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency("nokogiri")
 
   spec.add_development_dependency "bundler", "~> 1.16"
-  spec.add_development_dependency "codecov", "~> 0.1"
   spec.add_development_dependency "guard-rspec", "~> 4.7"
   spec.add_development_dependency "guard-rubocop", "~> 1.0"
   spec.add_development_dependency "rake", "~> 12.3"
@@ -44,5 +43,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rubocop", "~> 0.51"
   spec.add_development_dependency "rubocop-rspec", "~> 1.20"
   spec.add_development_dependency "rubocop-thread_safety"
+  spec.add_development_dependency "simplecov", "~> 0.15"
   spec.add_development_dependency "webmock", "~> 3.3"
 end
