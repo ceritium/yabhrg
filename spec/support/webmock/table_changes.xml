@@ -1,0 +1,18 @@
+<table id="jobInfo">
+    <employee id="123" lastChanged="2012-10-29T11:54:00Z">
+        <row>
+            <field id="jobTitle">Machinist</field>
+            <field id="reportsTo">John Smith</field>
+        </row>
+        <row>
+            <field id="jobTitle">Shop hand</field>
+            <field id="reportsTo">John Smith</field>
+        </row>
+    </employee>
+    <employee id="456">
+        <row>
+            <field id="jobTitle">Designer</field>
+            <field id="reportsTo">Jane Doe</field>
+        </row>
+    </employee>
+</table>
