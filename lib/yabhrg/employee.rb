@@ -13,6 +13,29 @@ module Yabhrg
       JSON.parse(get("employees/directory").body)
     end
 
+    # Use one of these in the {type} variable in the URL: "inserted", "updated", "deleted"
+    # The "since" parameter is an ISO 8601 date.
+    #
+    # https://www.bamboohr.com/api/documentation/changes.php
+    def changes_since(since_at: nil, type: nil)
+      path = "employees/changed"
+
+      query = {}
+
+      if since_at
+        since_at = Time.parse(since_at) if since_at.is_a?(String)
+        query[:since] = since_at.iso8601
+      end
+
+      query[:type] = type if type
+
+      query_string = query.map { |k, v| "#{k}=#{v}" }.join("&")
+
+      path = "#{path}?#{query_string}" if query_string
+
+      JSON.parse(get(path).body)
+    end
+
     def find(employee_id, fields: :all)
       query = if fields == :all
                 field_list
