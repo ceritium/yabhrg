@@ -20,9 +20,15 @@ Instantiate an api client:
 api = Yabhrg.api(api_key: "foo", subdomain: "bar")
 ```
 
-There are available three main modules: `Yabhrg::Employee`, `Yabhrg::Metadata`, `Yabhrg::Table` that can be instantiated as before: `Yabhrg::Employee.new(api_key: "foo", subdomain: "bar")`.
+There are available three main modules: `Employee`, `Metadata` and `Table` that can be instantiated with:
 
-Theses modules can be also accesed through `api`:
+```ruby
+Yabhrg::Employee.new(api_key: "foo", subdomain: "bar")`
+Yabhrg::Metada.new(api_key: "foo", subdomain: "bar")`
+Yabhrg::Table.new(api_key: "foo", subdomain: "bar")`
+```
+
+Or accessed through the api instance:
 
 ```ruby
 api.employee
