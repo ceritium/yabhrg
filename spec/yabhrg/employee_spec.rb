@@ -15,6 +15,31 @@ RSpec.describe Yabhrg::Employee do
     end
   end
 
+  describe "#changes_since" do
+    let(:now) do
+      Time.new(2016, 9, 23, 2, 40, 0).utc
+    end
+
+    let(:stub_api) do
+      stub_request(:get, "#{endpoint}/employees/changed?type=foo&since=#{now.iso8601}").
+        to_return(status: 200, body: {}.to_json)
+    end
+
+    it "request api" do
+      stub_api
+      instance.changes_since(type: "foo", since_at: now)
+
+      expect(stub_api).to have_been_requested
+    end
+
+    it "parse json" do
+      stub_api
+      result = instance.changes_since(type: "foo", since_at: now)
+
+      expect(result).to be_a(Hash)
+    end
+  end
+
   describe "#find" do
     let(:fields) do
       YAML.load_file("spec/support/webmock/metadata_fields.yml")
