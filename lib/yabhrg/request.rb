@@ -47,6 +47,7 @@ module Yabhrg
       end
 
       raise NonSuccessResponse, response if response.status >= 400
+
       response
     end
   end
